@@ -17,7 +17,7 @@
   --raisin-black-1: #004581;
   --majorelle-blue: #004581;
   --ghost-white-1: #fafaff;
-  --ghost-white-2: #f0f2fa;
+  --ghost-white-2: #dde8f0;
   --white-opacity: #ffffff80;
   --independence: #3b3951;
   --lavender-web: #ece9fb;
@@ -193,12 +193,13 @@ body { background: var(--white); }
   left: 0;
   width: 100%;
   background: var(--white);
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 1px 2px #0000000d;
-  height: 75px;
+  min-height: 60px;
   overflow: hidden;
   transition: 0.5s ease-in-out;
   z-index: 4;
+  border-bottom: 4px solid var(--majorelle-blue);
 }
 
 .header.active { height: 330px; }
@@ -252,8 +253,8 @@ body { background: var(--white); }
 
 .hero {
   padding: 125px 0 var(--section-padding);
-  /* padding: 20px 0; */
-  background: var(--ghost-white-1);
+  background: var(--ghost-white-2);
+  height: 90vh;
 }
 
 .hero-content { margin-bottom: 40px; }
@@ -325,7 +326,7 @@ body { background: var(--white); }
 .about-card {
   padding: 20px;
   text-align: center;
-  box-shadow: 0 3px 12px hsla(233, 77%, 10%, 0.06);
+  box-shadow: 0 3px 12px #060a2d0f;
   border-radius: 4px;
   transition: var(--transition);
 }
@@ -333,7 +334,7 @@ body { background: var(--white); }
 .about-card:hover {
   background: var(--majorelle-blue);
   transform: translateY(-5px);
-  box-shadow: 0 5px 18px hsla(245, 67%, 59%, 0.4);
+  box-shadow: 0 5px 18px #5c50dc66;
 }
 
 .about-card .card-icon {
@@ -351,9 +352,9 @@ body { background: var(--white); }
 }
 
 .about-card:hover .card-icon {
-  background: hsla(0, 0%, 100%, 0.15);
+  background: #ffffff26;
   color: var(--white);
-  box-shadow: 0 0 0 8px hsla(0, 0%, 100%, 0.05);
+  box-shadow: 0 0 0 8px #ffffff0d;
 }
 
 .about-card .card-title {
@@ -371,7 +372,7 @@ body { background: var(--white); }
   transition: var(--transition);
 }
 
-.about-card:hover .card-text { color: hsla(0, 0%, 100%, 0.5); }
+.about-card:hover .card-text { color: #ffffff80; }
 
 
 
@@ -498,7 +499,7 @@ footer .logo { margin-bottom: 25px; }
 
 .footer-link-box {
   display: grid;
-  gap: 50px;
+  gap: 15px;
 }
 
 .footer-list li:first-child { margin-bottom: 20px; }
@@ -523,7 +524,7 @@ footer .logo { margin-bottom: 25px; }
 
 .footer-bottom {
   background: var(--raisin-black-2);
-  padding-block: 20px;
+  padding-block: 10px;
   text-align: center;
 }
 
@@ -552,6 +553,95 @@ footer .logo { margin-bottom: 25px; }
 
 
 
+/**LOGIN AND REGISTER**/
+.body-cont {
+  height: 100vh;
+  background-color: var(--majorelle-blue);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form {
+  background-color: #fff;
+  height: 100vh;
+}
+
+.form-sect {
+  padding: var(--section-padding);
+}
+
+.form-sect h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inp {
+  background-color: var(--ghost-white-2);
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 16px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 5px #5c50dc80;
+  outline: none;
+}
+
+label {
+  font-weight: bold;
+  color: var(--independence);
+}
+
+.btn-form {
+  display: inline-block;
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px #5c50dc80;
+}
+.form-txt{
+  text-align: center;
+}
+.form-txt span a{
+  color: var(--majorelle-blue);
+  font-weight: 700;
+}
+.form-alt {
+  margin-top: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--independence);
+}
+
+.form-alt p {
+  display: flex;
+  justify-content: center;
+}
+
+.form-alt p span a{
+  color: var(--majorelle-blue);
+  font-weight: 700;
+  padding-left: 5px;
+}
+
+
+.side-img {
+  margin: auto;
+}
+
+.side-img img {
+  width: 100%;
+}
+
+
+
+
+
+
 
 
 /*-----------------------------------*\
@@ -575,12 +665,7 @@ footer .logo { margin-bottom: 25px; }
     padding-right: 155px;
   }
 
-  .hero .btn-primary {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    padding-block: 12.5px;
-  }
+
 
 
 
@@ -652,6 +737,7 @@ footer .logo { margin-bottom: 25px; }
    * REUSED STYLE
    */
 
+
   .container { max-width: 720px; }
 
   .section-text { max-width: 645px; }
@@ -700,14 +786,9 @@ footer .logo { margin-bottom: 25px; }
 
 }
 
-
-
-
-
 /**
  * responsive for larger than 992px screen
  */
-
 @media (min-width: 992px) {
 
   /**
@@ -878,4 +959,33 @@ footer .logo { margin-bottom: 25px; }
 
   .footer-list { width: 170px; }
 
+}
+
+
+
+
+
+/**
+ * responsive for smaller than 768px screen
+ */
+@media (max-width: 768px) {
+
+  .body-cont {
+    display: block;
+  }
+
+  .side-img{
+    display: none;
+  }
+    
+}
+
+/**
+ * responsive for smaller than 992px screen
+ */
+@media (max-width: 992px) {
+
+  .hero-banner img {
+    display: none;
+  }
 }
