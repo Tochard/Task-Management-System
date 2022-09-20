@@ -29,29 +29,33 @@
         <div class="form">
             <div class="form-sect">
                 <div class="form-logo">
-                    <a href="../index.html"><img src="../assets/images/logo.png" alt=""></a>
+                    <a href="../index.php"><img src="../assets/images/logo.png" alt=""></a>
                 </div>
 
                 <h2 class="h2 about-title">Create New Account</h2>
 
-                <form action="#" method="POST">
+                <form action="#" method="" autocomplete="off" id="signUp-form">
+                    <div class="error-txt"></div>
                     <label for="fname" class="label">Full name</label>
                     <input type="text" name="fname" class="inp">
                     <label for="email" class="label">Email</label>
                     <input type="email" name="email" class="inp">
                     <label for="password" class="label">Password</label>
                     <input type="password" name="password" class="inp">
-                    <button type="submit" name="Signup" class="btn btn-primary btn-form">Sign Up</button>
-                    <p class="form-txt">By clicking Sign Up, you agree to our<span><a href="terms.html">Terms & Conditions</a> </span></p>
+                    <button type="submit" name="Signup" class="btn btn-primary btn-form" id="signUp-btn">Sign Up</button>
+                    <p class="form-txt">By clicking Sign Up, you agree to our<span><a href="terms.php">Terms & Conditions</a> </span></p>
                 </form>
 
                 <div class="form-alt">
-                    <p>Already have an account? <span><a href="login.html">Log In</a> </span></p>
+                    <p>Already have an account? <span><a href="login.php">Log In</a> </span></p>
                 </div>
             </div>
 
         </div>
     </div>
+
+
+    <script src="../scripts/js/signup.js"></script>
 </body>
 
 </html>

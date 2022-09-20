@@ -54,8 +54,8 @@
         </ul>
 
         <div class="btn-group">
-          <a href="auth/login.html" class="btn btn-secondary">log In</a>
-          <a href="auth/register.html"class="btn btn-primary">Register Now</a>
+          <a href="auth/login.php" class="btn btn-secondary">log In</a>
+          <a href="auth/register.php"class="btn btn-primary">Register Now</a>
         </div>
         
       </nav>
@@ -87,8 +87,8 @@
             </p>
 
             <div class="btn-group">
-              <a href="auth/login.html" class="btn btn-secondary">Log In</a>
-              <a href="auth/register.html" class="btn btn-primary">Register Now</a>
+              <a href="auth/login.php" class="btn btn-secondary">Log In</a>
+              <a href="auth/register.php" class="btn btn-primary">Register Now</a>
             </div>
           </div>
 
@@ -245,8 +245,8 @@
         </ul>
 
         <div class="btn-group">
-          <a href="auth/" class="btn btn-secondary">Log In</a>
-          <a href="auth/register.html" class="btn btn-primary">Register Now</a>
+          <a href="auth/login.php" class="btn btn-secondary">Log In</a>
+          <a href="auth/register.php" class="btn btn-primary">Register Now</a>
 
           
         </div>
@@ -314,11 +314,11 @@
             </li>
 
             <li>
-              <a href="auth/login.html" class="footer-link">Log In</a>
+              <a href="auth/login.php" class="footer-link">Log In</a>
             </li>
 
             <li>
-              <a href="auth/register.html" class="footer-link">Register</a>
+              <a href="auth/register.php" class="footer-link">Register</a>
             </li>
 
 
