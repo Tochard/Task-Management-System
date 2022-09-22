@@ -190,6 +190,16 @@ body {
     background: #5c50dc26;
     color: var(--majorelle-blue);
 }
+.btn-logOut{
+    display: block;
+    margin-left: 10%;
+    margin-top: 10px;
+    background: #eb3838;
+    color: #fff;
+}
+.btn-logOut:hover{
+    background-color: red;
+}
 
 .section-title {
     text-align: center;
@@ -298,6 +308,7 @@ body {
 /* MAIN CONTENT */
 .greeting{
     color: var(--majorelle-blue);
+    text-transform: capitalize;
 }
 .main-content{
     padding: var(--section-padding);

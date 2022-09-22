@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['unique_id'])) { //if user is loggedin in a browser
+    header("location: ../dashboard/dashboard.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +37,7 @@
 
                 <h2 class="h2 about-title">Login To Account</h2>
 
-                <form action="#" method="" autocomplete="off" id="login-form">
+                <form action="#" method="" id="login-form">
                     <div class="error-txt">error message</div>
 
                     <label for="email" class="label">Email</label>

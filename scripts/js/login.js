@@ -2,7 +2,7 @@
 const form = document.querySelector("#login-form"),
 continueBtn = form.querySelector("#login-btn"),
 errorText = form.querySelector(".error-txt");
-
+ 
 //prevent form from submitting
 form.onsubmit = (e)=>{
     e.preventDefault(); 

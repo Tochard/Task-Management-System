@@ -16,9 +16,7 @@
     <!-- - google font link-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Mulish:wght@600;700;900&family=Quicksand:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600;700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -34,7 +32,7 @@
 
                 <h2 class="h2 about-title">Create New Account</h2>
 
-                <form action="#" method="" autocomplete="off" id="signUp-form">
+                <form action="#" method="" id="signUp-form">
                     <div class="error-txt"></div>
                     <label for="fname" class="label">Full name</label>
                     <input type="text" name="fname" class="inp">

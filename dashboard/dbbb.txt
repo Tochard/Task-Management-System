@@ -189,7 +189,11 @@ if (!isset($_SESSION['unique_id'])) {
                 </div>
 
                 <div class="table-wrapper">
+                    <?php
+                    $query = "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']} ORDER BY id ASC";
+                    $query_run = mysqli_query($conn, $query);
 
+                    ?>
 
                     <table>
                         <thead>
@@ -199,8 +203,31 @@ if (!isset($_SESSION['unique_id'])) {
                             <th>Action</th>
 
                         </thead>
-                        <tbody class="task-table">
-                            <!-- fetch data -->
+                        <tbody>
+                            <?php
+                            if (mysqli_num_rows($query_run) > 0) {
+                                while ($row2 = mysqli_fetch_assoc($query_run)) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $row2['task'] ?></td>
+                                        <td><?php echo $row2['time'] ?></td>
+                                        <td class="status pending"><?php echo $row2['status'] ?></td>
+                                        <td>
+                                            <div class="action">
+                                                <button class="btn__action btn-red"><i class="fa-solid fa-trash"></i></button>
+                                                <button class="btn__action btn-org"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                <button class="btn__action btn-green"><i class="fa-regular fa-square-check"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                            <?php
+                                }
+                            } else {
+                                echo "no result";
+                            }
+                            ?>
                         </tbody>
                     </table>
 
