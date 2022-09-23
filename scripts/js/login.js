@@ -16,7 +16,7 @@ continueBtn.onclick = () =>{
             if(Xhr.status === 200){
 
                 let data = Xhr.response;
-                console.log(data);
+                // console.log(data);
                 if(data == "success"){
                     location.href = "../dashboard/dashboard.php";
                 }else{

@@ -205,7 +205,7 @@ if (!isset($_SESSION['unique_id'])) {
                         </thead>
                         <tbody class="task-table">
                             <!-- fetch data -->
-                            
+
                         </tbody>
                     </table>
 
@@ -214,6 +214,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <form action="#" method="POST">
                     <button type="submit" name="rateMe" class="btn btn-primary btn-form">Rate Me</button>
                 </form>
+                <!-- <form action="#" method="" id="delTask33">
+                    <input type="hidden" name="id" value="'. $row['task_id'] .'">
+                    <button class="btn__action btn-red" id="del33"><i class="fa-solid fa-trash"></i></button>
+                </form> -->
             </div>
 
             <div class="form">
@@ -250,7 +254,6 @@ if (!isset($_SESSION['unique_id'])) {
     </div>
 
 
-    <script src="../scripts/js/deleteTask.js" type="text/javascript"></script>
     <script src="../scripts/js/addTask.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>

@@ -45,3 +45,6 @@ setInterval(()=>{
      let formData = new FormData(form); //creating new form data object
      Xhr.send(formData);  //sending the form data to php
 }, 500); //this function will frequently run after 500ms
+
+
+

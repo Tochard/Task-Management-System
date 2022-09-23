@@ -8,4 +8,5 @@ if (isset($_SESSION['unique_id'])) {
 
     $query = "DELETE FROM task WHERE task_id ='$task_id' ";
     $query_run = mysqli_query($conn, $query);
+    header("location: ../../dashboard/dashboard.php");
 }

@@ -393,7 +393,7 @@ table td {
     color:#faa70e;
     font-weight: 700;
 }
-.action{
+.action, .act-btn{
     display: flex;
     justify-content: space-around;
     gap: 10px;
@@ -408,7 +408,7 @@ table td {
 .btn-green{
     color: #0bb70b;
 }
-
+act-btn
 
 /* FORM */
 
