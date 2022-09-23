@@ -14,5 +14,6 @@ CREATE TABLE task (
     fullname varchar(255) NOT NULL,
     task varchar(500) NOT NULL,
     time varchar(255) NOT NULL,
+    task_id varchar(255) NOT NULL,
     status varchar(255) NOT NULL
 )

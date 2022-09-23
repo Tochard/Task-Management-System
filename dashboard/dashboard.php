@@ -142,11 +142,15 @@ if (!isset($_SESSION['unique_id'])) {
 
             <div class="card">
                 <div class="greeting">
-                    <p>GOOD MORNING,</p>
+                    <p>GOOD <?php
+                            $hour = date('H');
+                            $dayTerm = ($hour > 16) ? "EVENING" : (($hour > 12) ? "AFTERNOON" : "MORNING");
+                            echo $dayTerm;
+                            ?>,</p>
                     <h2>Welcome, <?php echo $row['fullname'] ?></h2>
                 </div>
                 <div class="heading">
-                    <h3 class="heading__title">Today, Monday <span class="heading__title--date">02/10/2022</span></h3>
+                    <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
                     <div>
                         <button class="btn btn-primary" id="addTask"><i class="fa-solid fa-plus"></i> Add Task</button>
                     </div>
@@ -201,6 +205,7 @@ if (!isset($_SESSION['unique_id'])) {
                         </thead>
                         <tbody class="task-table">
                             <!-- fetch data -->
+                            
                         </tbody>
                     </table>
 
@@ -245,7 +250,7 @@ if (!isset($_SESSION['unique_id'])) {
     </div>
 
 
-
+    <script src="../scripts/js/deleteTask.js" type="text/javascript"></script>
     <script src="../scripts/js/addTask.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>

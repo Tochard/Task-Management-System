@@ -16,9 +16,9 @@ if (mysqli_num_rows($query_run) > 0) {
                      <td class="status pending">' . $row2['status'] . '</td>
                      <td>
                          <div class="action">
-                             <button class="btn__action btn-red"><i class="fa-solid fa-trash"></i></button>
-                             <button class="btn__action btn-org"><i class="fa-solid fa-pen-to-square"></i></button>
-                             <button class="btn__action btn-green"><i class="fa-regular fa-square-check"></i></button>
+                            <button class="btn__action btn-red"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn__action btn-org"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn__action btn-green"><i class="fa-regular fa-square-check"></i></button>
                          </div>
                      </td>
                  </tr>';
