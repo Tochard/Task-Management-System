@@ -37,6 +37,14 @@ if (!isset($_SESSION['unique_id'])) {
     if (mysqli_num_rows($sql) > 0) {
         $row = mysqli_fetch_assoc($sql);
     }
+
+    date_default_timezone_set('Africa/lagos');
+    $date = date('m/d/Y');
+
+    $sql2 = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']}  AND date = '{$date}'");
+    if (mysqli_num_rows($sql2) > 0) {
+        $row2 = mysqli_fetch_assoc($sql2);
+    }
     ?>
     <div class="header">
         <div class="top-nav">
