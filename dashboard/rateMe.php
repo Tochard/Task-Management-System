@@ -62,7 +62,7 @@ if (!isset($_SESSION['unique_id'])) {
     <div class="content">
         <div class="mobile-nav" id="mobile-navs">
             <ul>
-                <a href="#" class="nav-link active">
+                <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -71,8 +71,8 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="rateMe.php" class="nav-link">
-                    <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
+                <a href="#" class="nav-link">
+                    <li class="nav-items  active"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
@@ -101,7 +101,7 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="side-nav" id="side-navs">
             <ul>
-                <a href="#" class="nav-link active">
+                <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -110,7 +110,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="rateMe.php" class="nav-link">
+                <a href="#" class="nav-link  active">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -141,125 +141,37 @@ if (!isset($_SESSION['unique_id'])) {
         <div class="main-content" id="main-content">
 
             <div class="card">
-                <div class="greeting">
-                    <p>GOOD <?php
-                            $hour = date('H');
-                            $dayTerm = ($hour > 16) ? "EVENING" : (($hour > 12) ? "AFTERNOON" : "MORNING");
-                            echo $dayTerm;
-                            ?>,</p>
-                    <h2>Welcome, <?php echo $row['fullname'] ?></h2>
-                </div>
-                <div class="heading">
+                <div class="rate-date">
                     <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
-                    <div>
-                        <button class="btn btn-primary" id="addTask"><i class="fa-solid fa-plus"></i> Add Task</button>
-                    </div>
+                </div>
+                <div class="greeting rating">
+                    <h2>Hi, <?php echo $row['fullname'] ?></h2>
+                    <h1>Your Today Productivity Rating:</h1>
+                    <h1 class="rate-per"><span>100%</span></h1>
+                    <img src="./images/100.png" alt="">
+                    <h2>Impressive Performance</h2>
+                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
                 </div>
 
-                <div class="form box" id="taskForm">
-                    <div class="form-sect">
-                        <h3 class="about-title">Add To Today Task</h3>
-
-                        <form action="#" method="" id="todayTask">
-                            <div class="st-inp">
-                                <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
-                                <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
-                                <div class="st-a">
-                                    <label for="Task" class="label">Task</label>
-                                    <input type="text" name="task" class="inp tsk">
-                                </div>
-                                <div class=" st-a">
-                                    <label for="time" class="label">Time</label>
-                                    <input type="time" name="time" class="inp tim">
-                                </div>
-                            </div>
-                            <button type=" submit" name="add" class="btn btn-primary btn-form" id="addToTask">Add</button>
-                        </form>
-                    </div>
-
+                <div class="see-task-btn">
+                    <a href="dashboard.php"><button class="btn btn-primary"> See Today Task</button></a>
                 </div>
 
-                <div class="table-wrapper">
-
-
-                    <table>
-                        <thead>
-                            <th>Task</th>
-                            <th>Time</th>
-                            <th>Status</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                            <th>Done</th>
-                            <th>Notify</th>
-                        </thead>
-                        <tbody class="task-table">
-                            <!-- fetch data -->
-
-                        </tbody>
-                    </table>
-
-
-                </div>
-                <form action="#" method="POST">
-                    <button type="submit" name="rateMe" class="btn btn-primary btn-form">Rate Me</button>
-                </form>
-                <!-- <button type="submit" name="rateMe" id="modal-btn"  class="btn btn-primary btn-form">Rate Me</button> -->
 
             </div>
 
-            <!-- MODAL -->
-            <!-- <button id="modal-btn" class="button">Click Here</button>
-            <div id="my-modal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                        <h2>Edit Task</h2>
-                    </div>
-                    <div class="modal-body">
-                        grbfcikgolprofkkf
-                    </div>
-                    <div class="modal-footer">
-                        <h3>Modal Footer</h3>
-                    </div>
-                </div>
-            </div> -->
 
 
-            <div class="form box">
-                <div class="form-sect">
-                    <h3 class="about-title">Add Experience</h3>
-
-                    <form action="#" method="POST">
-                        <div class="st-inp">
-                            <div class="st-a">
-                                <label for="date" class="label">Date</label>
-                                <input type="date" name="date" class="inp">
-                            </div>
-                            <div class="st-a">
-                                <label for="time" class="label">Time</label>
-                                <input type="time" name="time" class="inp">
-                            </div>
-                        </div>
-
-                        <label for="note" class="label">Note</label>
-                        <textarea name="note" id="" cols="30" rows="10" class="inp"></textarea>
-                        <button type="submit" name="add" class="btn btn-primary btn-form">Add Experience</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="footer">
+            <!-- <div class="footer">
                 <p class="copyright">
                     &copy; 2022 <a href="">Tochard</a>. All Right Reserved
                 </p>
-            </div>
+            </div> -->
         </div>
 
 
     </div>
 
-    <script src="../scripts/js/editTask.js" type="text/javascript"></script>
-    <script src="../scripts/js/addTask.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 

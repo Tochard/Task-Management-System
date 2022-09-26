@@ -32,11 +32,12 @@ if (!isset($_SESSION['unique_id'])) {
 <body>
 
     <?php
-    include_once "../scripts/php/dbconn.php";
-    $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-    if (mysqli_num_rows($sql) > 0) {
-        $row = mysqli_fetch_assoc($sql);
-    }
+    // include_once "../scripts/php/dbconn.php";
+    // $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+    // if (mysqli_num_rows($sql) > 0) {
+    //     $row = mysqli_fetch_assoc($sql);
+    // }
+    // 
     ?>
     <div class="header">
         <div class="top-nav">
@@ -62,7 +63,7 @@ if (!isset($_SESSION['unique_id'])) {
     <div class="content">
         <div class="mobile-nav" id="mobile-navs">
             <ul>
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -71,7 +72,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="rateMe.php" class="nav-link">
+                <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -101,7 +102,7 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="side-nav" id="side-navs">
             <ul>
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -110,7 +111,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="rateMe.php" class="nav-link">
+                <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -140,119 +141,91 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="main-content" id="main-content">
 
-            <div class="card">
-                <div class="greeting">
-                    <p>GOOD <?php
-                            $hour = date('H');
-                            $dayTerm = ($hour > 16) ? "EVENING" : (($hour > 12) ? "AFTERNOON" : "MORNING");
-                            echo $dayTerm;
-                            ?>,</p>
-                    <h2>Welcome, <?php echo $row['fullname'] ?></h2>
-                </div>
-                <div class="heading">
-                    <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
-                    <div>
-                        <button class="btn btn-primary" id="addTask"><i class="fa-solid fa-plus"></i> Add Task</button>
-                    </div>
-                </div>
-
-                <div class="form box" id="taskForm">
-                    <div class="form-sect">
-                        <h3 class="about-title">Add To Today Task</h3>
-
-                        <form action="#" method="" id="todayTask">
-                            <div class="st-inp">
-                                <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
-                                <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
-                                <div class="st-a">
-                                    <label for="Task" class="label">Task</label>
-                                    <input type="text" name="task" class="inp tsk">
-                                </div>
-                                <div class=" st-a">
-                                    <label for="time" class="label">Time</label>
-                                    <input type="time" name="time" class="inp tim">
-                                </div>
-                            </div>
-                            <button type=" submit" name="add" class="btn btn-primary btn-form" id="addToTask">Add</button>
-                        </form>
-                    </div>
-
-                </div>
-
-                <div class="table-wrapper">
+            <div class="form-sect card">
+                <h3 class="about-title">Edit Task</h3>
 
 
-                    <table>
-                        <thead>
-                            <th>Task</th>
-                            <th>Time</th>
-                            <th>Status</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                            <th>Done</th>
-                            <th>Notify</th>
-                        </thead>
-                        <tbody class="task-table">
-                            <!-- fetch data -->
 
-                        </tbody>
-                    </table>
+                <?php
 
 
-                </div>
-                <form action="#" method="POST">
-                    <button type="submit" name="rateMe" class="btn btn-primary btn-form">Rate Me</button>
-                </form>
-                <!-- <button type="submit" name="rateMe" id="modal-btn"  class="btn btn-primary btn-form">Rate Me</button> -->
 
-            </div>
+                if (isset($_POST['editTask'])) {
 
-            <!-- MODAL -->
-            <!-- <button id="modal-btn" class="button">Click Here</button>
-            <div id="my-modal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                        <h2>Edit Task</h2>
-                    </div>
-                    <div class="modal-body">
-                        grbfcikgolprofkkf
-                    </div>
-                    <div class="modal-footer">
-                        <h3>Modal Footer</h3>
-                    </div>
-                </div>
-            </div> -->
+                    $task_id = mysqli_real_escape_string($conn, $_POST['id']);
+
+                    $query = "SELECT * FROM task WHERE task_id = $task_id ";
+                    $query_run = mysqli_query($conn, $query);
+                    $result = mysqli_fetch_assoc($query_run);
+                ?>
 
 
-            <div class="form box">
-                <div class="form-sect">
-                    <h3 class="about-title">Add Experience</h3>
 
-                    <form action="#" method="POST">
+                    <form action="../scripts/php/editTask.php" method="POST">
                         <div class="st-inp">
+
+
                             <div class="st-a">
-                                <label for="date" class="label">Date</label>
-                                <input type="date" name="date" class="inp">
+                                <label for="Task" class="label">Task</label>
+                                <input type="text" name="task" class="inp tsk" value="<?php echo $result['task'] ?>">
                             </div>
-                            <div class="st-a">
+                            <div class=" st-a">
                                 <label for="time" class="label">Time</label>
-                                <input type="time" name="time" class="inp">
+                                <input type="time" name="time" class="inp tim" value="<?php echo $result['time'] ?>">
                             </div>
                         </div>
+                        <!-- <div>
+                            <label for="status" class="label">Status</label>
+                            <input type="text" name="status" class="inp result" value="">
+                        </div> -->
 
-                        <label for="note" class="label">Note</label>
-                        <textarea name="note" id="" cols="30" rows="10" class="inp"></textarea>
-                        <button type="submit" name="add" class="btn btn-primary btn-form">Add Experience</button>
+                        <label for="status" class="label">Status</label>
+                        <?php
+                        $status = $result['status'];
+
+                        if ($status == "Pending") {
+                        ?>
+                            <div class="radio-select">
+                                <div class="radio-btn">
+                                    <input type="radio" id="Pending" name="status" value="Pending" checked>
+                                    <label for="Pending">Pending</label>
+                                </div>
+
+                                <div class="radio-btn">
+                                    <input type="radio" id="Done" name="status" value="Done">
+                                    <label for="Done">Done</label>
+                                </div>
+                            </div>
+                        <?php
+                        } elseif ($status == "Done") {
+                        ?>
+                            <div class="radio-select">
+                                <div class="radio-btn">
+                                    <input type="radio" id="Pending" name="status" value="Pending">
+                                    <label for="Pending">Pending</label>
+                                </div>
+
+                                <div class="radio-btn">
+                                    <input type="radio" id="Done" name="status" value="Done" checked>
+                                    <label for="Done">Done</label>
+                                </div>
+                            </div>
+
+                        <?php
+                        }
+
+                        ?>
+                        <input type="hidden" name="id" value=" <?php echo $result['task_id'] ?>">
+                        <button type=" submit" name="update" class="btn btn-primary btn-form" id="update">Update</button>
                     </form>
-                </div>
+
+
+                <?php
+                }
+                ?>
             </div>
 
-            <div class="footer">
-                <p class="copyright">
-                    &copy; 2022 <a href="">Tochard</a>. All Right Reserved
-                </p>
-            </div>
+
         </div>
 
 
