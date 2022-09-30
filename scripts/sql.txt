@@ -10,6 +10,9 @@ CREATE TABLE users (
 CREATE TABLE task (
 	id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     date varchar(255) NOT NULL,
+    day varchar(255) NOT NULL,
+    month varchar(255) NOT NULL,
+    year varchar(255) NOT NULL,
     unique_id int(200) NOT NULL,
     fullname varchar(255) NOT NULL,
     task varchar(500) NOT NULL,
@@ -17,3 +20,4 @@ CREATE TABLE task (
     task_id varchar(255) NOT NULL,
     status varchar(255) NOT NULL
 )
+

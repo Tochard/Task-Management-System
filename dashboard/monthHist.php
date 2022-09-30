@@ -37,8 +37,6 @@ if (!isset($_SESSION['unique_id'])) {
     if (mysqli_num_rows($sql) > 0) {
         $row = mysqli_fetch_assoc($sql);
     }
-
-
     ?>
     <div class="header">
         <div class="top-nav">
@@ -70,8 +68,8 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
-                <a href="#" class="nav-link">
-                    <li class="nav-items  active"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
+                <a href="rateMe.php" class="nav-link">
+                    <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
@@ -85,7 +83,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
-                <a href="history.php" class="nav-link">
+                <a href="history.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-database"></i>History</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -109,7 +107,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
-                <a href="#" class="nav-link  active">
+                <a href="rateMe.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -124,7 +122,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
-                <a href="history.php" class="nav-link">
+                <a href="history.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-database"></i>History</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -141,94 +139,64 @@ if (!isset($_SESSION['unique_id'])) {
         </div>
 
         <div class="main-content" id="main-content">
+            <?php
+            if (isset($_POST['check'])) {
+                $month = mysqli_real_escape_string($conn, $_POST['month']);
+                $year = mysqli_real_escape_string($conn, $_POST['year']);
+            }
+
+
+
+            ?>
 
             <div class="card">
-                <div class="rate-date">
-                    <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
+                <div class="greeting">
+                    <p>History</p>
+                    <h2><?php echo $month . " " . $year ?></h2>
                 </div>
 
-                <?php
+                <div class="table-wrapper">
 
-                date_default_timezone_set('Africa/lagos');
-                $date = date('m/d/Y');
+                    <table>
+                        <thead>
+                            <th>Days</th>
+                            <th>Date</th>
+                            <th>View Tasks</th>
+                        </thead>
+                        <tbody class="task-table">
 
-                $totalTaskQuery = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']}  AND date = '{$date}'");
-                $totalTask =  mysqli_num_rows($totalTaskQuery);
+                            <?php
+                            $query = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']} AND month = '{$month}' AND year = '{$year}' GROUP BY date");
+                            if (mysqli_num_rows($query) > 0) {
+                                while ($row2 = mysqli_fetch_assoc($query)) {
 
+                            ?>
 
-                $completedTaskQuery = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']}  AND date = '{$date}' AND status = 'Done'");
-                $completedTask = mysqli_num_rows($completedTaskQuery);
+                                    <tr>
+                                        <td><?php echo $row2['day'] ?></td>
+                                        <td><?php echo $row2['date'] ?></td>
+                                        <td>
+                                            <form action="./viewTask.php" method="POST">
+                                                <input type="hidden" name="date" value="<?php echo $row2['date'] ?>">
+                                                <button class="btn btn-primary btn-green" name="view" type="submit"><i class="fa-solid fa-eye"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                            <?php
+                                }
+                            } else {
+                                echo "<h3 style = 'color: #eb3838; margin: 20px;'>No History Found</h3>";
+                            }
+                            ?>
 
+                        </tbody>
+                    </table>
 
-
-                if (mysqli_num_rows($totalTaskQuery) > 0) {
-                    $rating = round(($completedTask / $totalTask) * 100);
-                ?>
-
-
-                    <div class="greeting rating">
-                        <h2>Hi, <?php echo $row['fullname'] ?></h2>
-                        <h1>Your Today Productivity Rating:</h1>
-                        <h1 class="rate-per"><?php echo $rating ?>%</h1>
-                        <?php
-                        if ($rating >= 90) {
-                        ?>
-                            <div>
-                                <img src="./images/100.png" alt="">
-                                <h2>Impressive Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        } elseif ($rating >= 60) {
-                        ?>
-                            <div>
-                                <img src="./images/60.png" alt="">
-                                <h2>Great Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        } elseif ($rating >= 30) {
-                        ?>
-                            <div>
-                                <img src="./images/30.png" alt="">
-                                <h2>Fair Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        } elseif ($rating >= 0) {
-                        ?>
-                            <div>
-                                <img src="./images/00.png" alt="">
-                                <h2>Poor Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-
-                <?php
-                } else {
-                ?>
-                    <div class="greeting rating">
-                        <h2>Hi, <?php echo $row['fullname'] ?></h2>
-                        <h1>Your Today Productivity Rating:</h1>
-                        <h1 class="rate-per">0%</h1>
-                        <div>
-                            <img src="./images/none.png" alt="">
-                            <h2>No Task Added Today</h2>
-                            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                        </div>
-                    </div>
-
-                <?php
-                }
-                ?>
-                <div class="see-task-btn">
-                    <a href="dashboard.php"><button class="btn btn-primary"> See Today Task</button></a>
                 </div>
 
 
+
+                <a href="history.php"><button class="btn btn-primary btn-form">Go Back</button></a>
             </div>
 
 
@@ -243,6 +211,8 @@ if (!isset($_SESSION['unique_id'])) {
 
     </div>
 
+    <script src="../scripts/js/editTask.js" type="text/javascript"></script>
+    <script src="../scripts/js/addTask.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 

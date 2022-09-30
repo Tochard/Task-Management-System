@@ -65,14 +65,14 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
-                </a>
-                <a href="#" class="nav-link">
-                    <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
                 <a href="rateMe.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
+                </a>
+                <a href="#" class="nav-link">
+                    <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
@@ -83,7 +83,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="history.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-database"></i>History</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -94,7 +94,7 @@ if (!isset($_SESSION['unique_id'])) {
                 </a>
                 <form action="../scripts/php/logout.php" method="POST">
                     <input type="hidden" value="<?php echo $row['unique_id'] ?>">
-                    <button type="submit" name="logout" class="btn-logOut btn ">Log Out</button>
+                    <button type="submit" name="logout" class="btn-logOut btn "><i class="fa-solid fa-right-from-bracket"></i>Log Out</button>
                 </form>
             </ul>
         </div>
@@ -104,14 +104,14 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
-                </a>
-                <a href="#" class="nav-link">
-                    <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
                 <a href="rateMe.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
+                </a>
+                <a href="#" class="nav-link">
+                    <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
@@ -122,7 +122,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="history.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-database"></i>History</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -133,7 +133,7 @@ if (!isset($_SESSION['unique_id'])) {
                 </a>
                 <form action="../scripts/php/logout.php" method="POST">
                     <input type="hidden" value="<?php echo $row['unique_id'] ?>">
-                    <button type="submit" name="logout" class="btn-logOut btn ">Log Out</button>
+                    <button type="submit" name="logout" class="btn-logOut btn "><i class="fa-solid fa-right-from-bracket"></i>Log Out</button>
                 </form>
             </ul>
         </div>
@@ -200,30 +200,10 @@ if (!isset($_SESSION['unique_id'])) {
 
 
                 </div>
-                <form action="#" method="POST">
-                    <button type="submit" name="rateMe" class="btn btn-primary btn-form">Rate Me</button>
-                </form>
-                <!-- <button type="submit" name="rateMe" id="modal-btn"  class="btn btn-primary btn-form">Rate Me</button> -->
+
+                <a href="rateMe.php"><button class="btn btn-primary btn-form">Rate Me</button></a>
 
             </div>
-
-            <!-- MODAL -->
-            <!-- <button id="modal-btn" class="button">Click Here</button>
-            <div id="my-modal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                        <h2>Edit Task</h2>
-                    </div>
-                    <div class="modal-body">
-                        grbfcikgolprofkkf
-                    </div>
-                    <div class="modal-footer">
-                        <h3>Modal Footer</h3>
-                    </div>
-                </div>
-            </div> -->
-
 
             <div class="form box">
                 <div class="form-sect">

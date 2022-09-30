@@ -37,8 +37,6 @@ if (!isset($_SESSION['unique_id'])) {
     if (mysqli_num_rows($sql) > 0) {
         $row = mysqli_fetch_assoc($sql);
     }
-
-
     ?>
     <div class="header">
         <div class="top-nav">
@@ -67,11 +65,11 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="addTask.php" class="nav-link">
+                <a href="#" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
-                <a href="#" class="nav-link">
-                    <li class="nav-items  active"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
+                <a href="rateMe.php" class="nav-link">
+                    <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
@@ -106,10 +104,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="addTask.php" class="nav-link">
+                <a href="#" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
-                <a href="#" class="nav-link  active">
+                <a href="rateMe.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bookmark"></i>Rate Me</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -143,106 +141,70 @@ if (!isset($_SESSION['unique_id'])) {
         <div class="main-content" id="main-content">
 
             <div class="card">
-                <div class="rate-date">
+
+                <div class="heading">
                     <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
+                    <div>
+                        <button class="btn btn-primary" id="addTask"><i class="fa-solid fa-plus"></i> Add Task</button>
+                    </div>
                 </div>
 
-                <?php
+                <div class="form box" id="taskForm">
+                    <div class="form-sect">
+                        <h3 class="about-title">Add To Today Task</h3>
 
-                date_default_timezone_set('Africa/lagos');
-                $date = date('m/d/Y');
-
-                $totalTaskQuery = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']}  AND date = '{$date}'");
-                $totalTask =  mysqli_num_rows($totalTaskQuery);
-
-
-                $completedTaskQuery = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']}  AND date = '{$date}' AND status = 'Done'");
-                $completedTask = mysqli_num_rows($completedTaskQuery);
-
-
-
-                if (mysqli_num_rows($totalTaskQuery) > 0) {
-                    $rating = round(($completedTask / $totalTask) * 100);
-                ?>
-
-
-                    <div class="greeting rating">
-                        <h2>Hi, <?php echo $row['fullname'] ?></h2>
-                        <h1>Your Today Productivity Rating:</h1>
-                        <h1 class="rate-per"><?php echo $rating ?>%</h1>
-                        <?php
-                        if ($rating >= 90) {
-                        ?>
-                            <div>
-                                <img src="./images/100.png" alt="">
-                                <h2>Impressive Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
+                        <form action="#" method="" id="todayTask">
+                            <div class="st-inp">
+                                <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
+                                <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
+                                <div class="st-a">
+                                    <label for="Task" class="label">Task</label>
+                                    <input type="text" name="task" class="inp tsk">
+                                </div>
+                                <div class=" st-a">
+                                    <label for="time" class="label">Time</label>
+                                    <input type="time" name="time" class="inp tim">
+                                </div>
                             </div>
-                        <?php
-                        } elseif ($rating >= 60) {
-                        ?>
-                            <div>
-                                <img src="./images/60.png" alt="">
-                                <h2>Great Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        } elseif ($rating >= 30) {
-                        ?>
-                            <div>
-                                <img src="./images/30.png" alt="">
-                                <h2>Fair Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        } elseif ($rating >= 0) {
-                        ?>
-                            <div>
-                                <img src="./images/00.png" alt="">
-                                <h2>Poor Performance</h2>
-                                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                            </div>
-                        <?php
-                        }
-                        ?>
+                            <button type=" submit" name="add" class="btn btn-primary btn-form" id="addToTask">Add</button>
+                        </form>
                     </div>
 
-                <?php
-                } else {
-                ?>
-                    <div class="greeting rating">
-                        <h2>Hi, <?php echo $row['fullname'] ?></h2>
-                        <h1>Your Today Productivity Rating:</h1>
-                        <h1 class="rate-per">0%</h1>
-                        <div>
-                            <img src="./images/none.png" alt="">
-                            <h2>No Task Added Today</h2>
-                            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolorum a officiis, beatae laborum in."<br>~ james brake</p>
-                        </div>
-                    </div>
+                </div>
+                <div class="table-wrapper">
 
-                <?php
-                }
-                ?>
-                <div class="see-task-btn">
-                    <a href="dashboard.php"><button class="btn btn-primary"> See Today Task</button></a>
+
+                    <table>
+                        <thead>
+                            <th>Task</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                            <th>Done</th>
+                            <th>Notify</th>
+                        </thead>
+                        <tbody class="task-table">
+                            <!-- fetch data -->
+
+                        </tbody>
+                    </table>
+
+
                 </div>
 
+                <a href="rateMe.php"><button type="submit" name="rateMe" id="modal-btn" class="btn btn-primary btn-form">Rate Me</button></a>
 
             </div>
 
 
-
-            <!-- <div class="footer">
-                <p class="copyright">
-                    &copy; 2022 <a href="">Tochard</a>. All Right Reserved
-                </p>
-            </div> -->
         </div>
 
 
     </div>
 
+    <script src="../scripts/js/editTask.js" type="text/javascript"></script>
+    <script src="../scripts/js/addTask.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 

@@ -9,7 +9,7 @@ $date = date('m/d/Y');
 
 
 if (!empty($email) && !empty($password)) {
-    //checking the email and password matched that of teh database 
+    //checking the email and password matched that of database details 
 
     $sql = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}' AND password = '{$password}'");
     if (mysqli_num_rows($sql) > 0) {

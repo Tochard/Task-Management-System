@@ -22,25 +22,25 @@ if (mysqli_num_rows($query_run) > 0) {
         $output3 = ' <td>
                         <form action="../scripts/php/deleteTask.php" method="POST">
                             <input type="hidden" name="id" value="' . $row2['task_id'] . '">
-                            <button class="btn__action btn-red" type = "submit" name= "deleteTask"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn__action btn-primary btn-red" type = "submit" name= "deleteTask"><i class="fa-solid fa-trash"></i></button>
                         </form>
                     </td>
                     <td >
                         <form action="./editTask.php" method="POST">
                             <input type="hidden" name="id" value=" ' . $row2['task_id'] . '">
-                            <button class="btn__action btn-org" type = "submit" name= "editTask"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn__action btn-primary btn-org" type = "submit" name= "editTask"><i class="fa-solid fa-pen-to-square"></i></button>
                         </form>
                     </td>
                     <td>
                         <form action="../scripts/php/markTask.php" method="POST">
                             <input type="hidden" name="id" value=" ' . $row2['task_id'] . '">
-                            <button class="btn__action btn-green" type = "submit" name= "markTask"><i class="fa-regular fa-square-check"></i></button>
+                            <button class="btn btn__action btn-primary btn-green" type = "submit" name= "markTask"><i class="fa-regular fa-square-check"></i></button>
                         </form>
                     </td>
                     <td>
                         <form action="../scripts/php/notify.php" method="POST">
                             <input type="hidden" name="id" value=" ' . $row2['task_id'] . '">
-                            <button class="btn__action btn-blue" type = "submit" name= "notify"><i class="fa-regular fa-bell"></i></button>
+                            <button class="btn btn__action btn-blue" type = "submit" name= "notify"><i class="fa-regular fa-bell"></i></button>
                         </form>
                     </td>
                 </tr>';
