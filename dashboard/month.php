@@ -65,7 +65,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="#" class="nav-link active">
+                <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
                 <a href="rateMe.php" class="nav-link">
@@ -80,7 +80,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link">
+                <a href="monthPlan.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="history.php" class="nav-link">
@@ -104,7 +104,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="#" class="nav-link active">
+                <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
                 <a href="rateMe.php" class="nav-link">
@@ -119,7 +119,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link">
+                <a href="monthPlan.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="history.php" class="nav-link">
@@ -142,49 +142,63 @@ if (!isset($_SESSION['unique_id'])) {
 
             <div class="card">
 
+                <?php
+                if (isset($_POST['viewMonth'])) {
+                    $month = mysqli_real_escape_string($conn, $_POST['month']);
+                    $monthNo = mysqli_real_escape_string($conn, $_POST['monthNo']);
+                    $days = mysqli_real_escape_string($conn, $_POST['days']);
+
+                    $_SESSION['month'] = $month;
+                }
+                ?>
+
                 <div class="heading">
-                    <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
+                    <h2 class="heading__title">
+                        <?php echo $_SESSION['month'] . " " . date('Y') ?>
+                    </h2>
                     <div>
-                        <button class="btn btn-primary" id="addTask"><i class="fa-solid fa-plus"></i> Add Task</button>
+                        <button class="btn btn-primary" id="addPlan"><i class="fa-solid fa-plus"></i> Add Plan</button>
                     </div>
                 </div>
 
-                <div class="form box" id="taskForm">
-                    <div class="form-sect">
-                        <h3 class="about-title">Add To Today Task</h3>
+                <div class="form box" id="plan">
+                    <div class=" form-sect">
+                        <h3 class="about-title">Add To Month Plan</h3>
 
-                        <form action="#" method="" id="todayTask">
+                        <form action="#" method="" id="planForm">
                             <div class="st-inp">
                                 <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
                                 <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
+                                <input type="hidden" name="month" value="<?php echo $month ?>">
                                 <div class="st-a">
-                                    <label for="Task" class="label">Task</label>
-                                    <input type="text" name="task" class="inp tsk">
+                                    <label for="plan" class="label">Plan</label>
+                                    <input type="text" name="plan" class="inp pln">
                                 </div>
                                 <div class=" st-a">
-                                    <label for="time" class="label">Time</label>
-                                    <input type="time" name="time" class="inp tim">
+                                    <label for="date" class="label">Date <small>(if neccessary)</small></label>
+                                    <input type="date" name="date" class="inp dt" min="<?php echo date('Y') . "-" . $monthNo . "-01" ?>" max="<?php echo date('Y') . "-" . $monthNo . "-" . $days ?>">
                                 </div>
                             </div>
-                            <button type=" submit" name="add" class="btn btn-primary btn-form" id="addToTask">Add</button>
+                            <button type=" submit" name="add" class="btn btn-primary btn-form" id="addToPlan">Add</button>
                         </form>
                     </div>
 
                 </div>
+
                 <div class="table-wrapper">
 
 
                     <table>
                         <thead>
-                            <th>Task</th>
-                            <th>Time</th>
+                            <th>Plan</th>
+                            <th>Date</th>
                             <th>Status</th>
                             <th>Delete</th>
                             <th>Edit</th>
                             <th>Done</th>
                             <th>Notify</th>
                         </thead>
-                        <tbody class="task-table">
+                        <tbody class="plan-table">
                             <!-- fetch data -->
 
                         </tbody>
@@ -193,7 +207,7 @@ if (!isset($_SESSION['unique_id'])) {
 
                 </div>
 
-                <a href="rateMe.php"><button type="submit" name="rateMe" id="modal-btn" class="btn btn-primary btn-form">Rate Me</button></a>
+                <a href="monthPlan.php"><button class="btn btn-primary btn-form">Go Back</button></a>
 
             </div>
 
@@ -203,8 +217,10 @@ if (!isset($_SESSION['unique_id'])) {
 
     </div>
 
-    <script src="../scripts/js/editTask.js" type="text/javascript"></script>
-    <script src="../scripts/js/addTask.js" type="text/javascript"></script>
+    <!-- <script src="../scripts/js/editTask.js" type="text/javascript"></script> -->
+    <script src="../scripts/js/addPlan.js" type="text/javascript"></script>
+
+    <script src="./js/addplan.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 

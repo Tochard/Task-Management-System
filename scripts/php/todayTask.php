@@ -48,5 +48,5 @@ if (mysqli_num_rows($query_run) > 0) {
         echo $output . $output2 . $output3;
     }
 } else {
-    echo "<h3 style = 'color: #eb3838; margin: 20px;'>No Task Yet</h3>";
+    echo "<h3 style = 'color: #eb3838; margin: 20px;'>No Task</h3>";
 }

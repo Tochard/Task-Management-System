@@ -80,7 +80,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="monthPlan.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="#" class="nav-link active">
@@ -119,7 +119,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="monthPlan.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="#" class="nav-link active">
@@ -214,18 +214,13 @@ if (!isset($_SESSION['unique_id'])) {
                             <div class="st-a">
                                 <label for="year" class="label">Year</label>
                                 <select name="year" class="inp" style="width:100%;" required>
-
+                                    <option value="2020">2017</option>
+                                    <option value="2020">2018</option>
+                                    <option value="2020">2019</option>
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
                                     <option value="2022" selected>2022</option>
                                     <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
-                                    <option value="2027">2027</option>
-                                    <option value="2028">2028</option>
-                                    <option value="2029">2029</option>
-                                    <option value="2030">2030</option>
                                 </select>
                             </div>
                         </div>

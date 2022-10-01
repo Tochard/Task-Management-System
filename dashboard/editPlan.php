@@ -32,11 +32,12 @@ if (!isset($_SESSION['unique_id'])) {
 <body>
 
     <?php
-    include_once "../scripts/php/dbconn.php";
-    $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-    if (mysqli_num_rows($sql) > 0) {
-        $row = mysqli_fetch_assoc($sql);
-    }
+    // include_once "../scripts/php/dbconn.php";
+    // $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+    // if (mysqli_num_rows($sql) > 0) {
+    //     $row = mysqli_fetch_assoc($sql);
+    // }
+    // 
     ?>
     <div class="header">
         <div class="top-nav">
@@ -65,7 +66,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="#" class="nav-link active">
+                <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
                 <a href="rateMe.php" class="nav-link">
@@ -80,7 +81,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link">
+                <a href="monthPlan.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="history.php" class="nav-link">
@@ -104,7 +105,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="dashboard.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
-                <a href="#" class="nav-link active">
+                <a href="addTask.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-plus"></i>Add Task</li>
                 </a>
                 <a href="rateMe.php" class="nav-link">
@@ -119,7 +120,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link">
+                <a href="monthPlan.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="history.php" class="nav-link">
@@ -140,61 +141,84 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="main-content" id="main-content">
 
-            <div class="card">
+            <div class="form-sect card">
+                <h3 class="about-title">Edit Task</h3>
 
-                <div class="heading">
-                    <h3 class="heading__title">Today, <?php echo date('l') ?> <span class="heading__title--date"><?php echo $row['date'] ?></span></h3>
-                    <div>
-                        <button class="btn btn-primary" id="addTask"><i class="fa-solid fa-plus"></i> Add Task</button>
-                    </div>
-                </div>
 
-                <div class="form box" id="taskForm">
-                    <div class="form-sect">
-                        <h3 class="about-title">Add To Today Task</h3>
 
-                        <form action="#" method="" id="todayTask">
-                            <div class="st-inp">
-                                <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
-                                <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
-                                <div class="st-a">
-                                    <label for="Task" class="label">Task</label>
-                                    <input type="text" name="task" class="inp tsk">
+                <?php
+
+
+
+                if (isset($_POST['editPlan'])) {
+
+                    $plan_id = mysqli_real_escape_string($conn, $_POST['id']);
+
+                    $query = "SELECT * FROM plans WHERE plan_id = $plan_id ";
+                    $query_run = mysqli_query($conn, $query);
+                    $result = mysqli_fetch_assoc($query_run);
+                ?>
+
+
+
+                    <form action="../scripts/php/editPlan.php" method="POST">
+                        <div class="st-inp">
+
+
+                            <div class="st-a">
+                                <label for="Plan" class="label">Plan</label>
+                                <input type="text" name="plan" class="inp pln" value="<?php echo $result['plan'] ?>">
+                            </div>
+                            <div class=" st-a">
+                                <label for="date" class="label">Date</label>
+                                <input type="date" name="date" class="inp dt" value="<?php echo $result['date'] ?>">
+                            </div>
+                        </div>
+
+                        <label for="status" class="label">Status</label>
+                        <?php
+                        $status = $result['status'];
+
+                        if ($status == "Pending") {
+                        ?>
+                            <div class="radio-select">
+                                <div class="radio-btn">
+                                    <input type="radio" id="Pending" name="status" value="Pending" checked>
+                                    <label for="Pending">Pending</label>
                                 </div>
-                                <div class=" st-a">
-                                    <label for="time" class="label">Time</label>
-                                    <input type="time" name="time" class="inp tim">
+
+                                <div class="radio-btn">
+                                    <input type="radio" id="Done" name="status" value="Done">
+                                    <label for="Done">Done</label>
                                 </div>
                             </div>
-                            <button type=" submit" name="add" class="btn btn-primary btn-form" id="addToTask">Add</button>
-                        </form>
-                    </div>
+                        <?php
+                        } elseif ($status == "Done") {
+                        ?>
+                            <div class="radio-select">
+                                <div class="radio-btn">
+                                    <input type="radio" id="Pending" name="status" value="Pending">
+                                    <label for="Pending">Pending</label>
+                                </div>
 
-                </div>
-                <div class="table-wrapper">
+                                <div class="radio-btn">
+                                    <input type="radio" id="Done" name="status" value="Done" checked>
+                                    <label for="Done">Done</label>
+                                </div>
+                            </div>
+
+                        <?php
+                        }
+
+                        ?>
+                        <input type="hidden" name="id" value=" <?php echo $result['plan_id'] ?>">
+                        <button type=" submit" name="update" class="btn btn-primary btn-form" id="update">Update</button>
+                    </form>
 
 
-                    <table>
-                        <thead>
-                            <th>Task</th>
-                            <th>Time</th>
-                            <th>Status</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                            <th>Done</th>
-                            <th>Notify</th>
-                        </thead>
-                        <tbody class="task-table">
-                            <!-- fetch data -->
-
-                        </tbody>
-                    </table>
-
-
-                </div>
-
-                <a href="rateMe.php"><button type="submit" name="rateMe" id="modal-btn" class="btn btn-primary btn-form">Rate Me</button></a>
-
+                <?php
+                }
+                ?>
             </div>
 
 

@@ -491,6 +491,9 @@ label {
 #taskForm{
     display: none;
 }
+#plan{
+    display: none;
+}
 .radio-select{
     display: flex;
     gap: 50px;
@@ -551,14 +554,22 @@ label {
     justify-content: end;
 }
 
-
+.mth{
+    margin: 0 auto;
+}
 .month-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 20px;
     padding: 50px 5%;
 }
-
+.month form{
+    display: flex;
+    justify-content: center;
+}
+.month button{
+    width: 200px;
+}
 
 
 

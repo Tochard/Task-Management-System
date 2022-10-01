@@ -49,20 +49,22 @@ addTask.addEventListener('click', function(e){
   }
 });
 
-// SEE TODAY TASK BUTTON
-var seeTask = document.getElementById("see");
-var todayTask = document.getElementById("todaytsk");
 
-seeTask.addEventListener('click', function(e){
-  console.log('good boy');
-    if (todayTask.style.display === "block") {
-    todayTask.style.display = "none";
-    seeTask.innerHTML = 'See Today Task';
-    seeTask.style.backgroundColor = "#004581";
-  } else {
-    todayTask.style.display = "block";
-    seeTask.innerHTML = 'Cancel';
-    seeTask.style.backgroundColor = "#eb3838";
-  }
-});
+
+// SEE TODAY TASK BUTTON
+// var seeTask = document.getElementById("see");
+// var todayTask = document.getElementById("todaytsk");
+
+// seeTask.addEventListener('click', function(e){
+//   console.log('good boy');
+//     if (todayTask.style.display === "block") {
+//     todayTask.style.display = "none";
+//     seeTask.innerHTML = 'See Today Task';
+//     seeTask.style.backgroundColor = "#004581";
+//   } else {
+//     todayTask.style.display = "block";
+//     seeTask.innerHTML = 'Cancel';
+//     seeTask.style.backgroundColor = "#eb3838";
+//   }
+// });
 
