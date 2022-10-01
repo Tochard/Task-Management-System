@@ -209,21 +209,24 @@ if (!isset($_SESSION['unique_id'])) {
                 <div class="form-sect">
                     <h3 class="about-title">Add Experience</h3>
 
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" id="noteForm">
                         <div class="st-inp">
                             <div class="st-a">
                                 <label for="date" class="label">Date</label>
-                                <input type="date" name="date" class="inp">
+                                <input type="date" name="date" class="inp dt">
                             </div>
                             <div class="st-a">
                                 <label for="time" class="label">Time</label>
-                                <input type="time" name="time" class="inp">
+                                <input type="time" name="time" class="inp tm">
                             </div>
                         </div>
 
                         <label for="note" class="label">Note</label>
-                        <textarea name="note" id="" cols="30" rows="10" class="inp"></textarea>
-                        <button type="submit" name="add" class="btn btn-primary btn-form">Add Experience</button>
+                        <textarea name="note" id="" cols="30" rows="10" class="inp nt"></textarea>
+
+                        <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
+                        <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
+                        <button type="submit" name="addnote" id="addNote" class="btn btn-primary btn-form">Add Experience</button>
                     </form>
                 </div>
             </div>
@@ -240,6 +243,7 @@ if (!isset($_SESSION['unique_id'])) {
 
     <script src="../scripts/js/editTask.js" type="text/javascript"></script>
     <script src="../scripts/js/addTask.js" type="text/javascript"></script>
+    <script src="../scripts/js/addNote.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 
