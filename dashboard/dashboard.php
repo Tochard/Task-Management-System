@@ -62,7 +62,7 @@ if (!isset($_SESSION['unique_id'])) {
     <div class="content">
         <div class="mobile-nav" id="mobile-navs">
             <ul>
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link   active">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="addTask.php" class="nav-link">
@@ -74,10 +74,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
                 <a href="monthPlan.php" class="nav-link">
@@ -101,7 +101,7 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="side-nav" id="side-navs">
             <ul>
-                <a href="#" class="nav-link active">
+                <a href="dashboard.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="addTask.php" class="nav-link">
@@ -113,10 +113,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
                 <a href="monthPlan.php" class="nav-link">
@@ -205,37 +205,37 @@ if (!isset($_SESSION['unique_id'])) {
 
             </div>
 
-            <div class="form box">
+            <!-- <div class="form box">
                 <div class="form-sect">
                     <h3 class="about-title">Add Experience</h3>
 
-                    <form action="#" method="POST" id="noteForm">
+                    <form action="#" method="" id="noteForm">
                         <div class="st-inp">
                             <div class="st-a">
                                 <label for="date" class="label">Date</label>
-                                <input type="date" name="date" class="inp dt">
+                                <input type="date" name="date" class="inp dtn">
                             </div>
                             <div class="st-a">
                                 <label for="time" class="label">Time</label>
-                                <input type="time" name="time" class="inp tm">
+                                <input type="time" name="time" class="inp tmn">
                             </div>
                         </div>
 
                         <label for="note" class="label">Note</label>
-                        <textarea name="note" id="" cols="30" rows="10" class="inp nt"></textarea>
+                        <textarea name="note" id="" cols="30" rows="10" class="inp ntn"></textarea>
 
                         <input type="hidden" name="user_id" value="<?php echo $row['unique_id'] ?>">
                         <input type="hidden" name="fname" value="<?php echo $row['fullname'] ?>">
-                        <button type="submit" name="addnote" id="addNote" class="btn btn-primary btn-form">Add Experience</button>
+                        <button type="submit" name="addNote" id="addNote" class="btn btn-primary btn-form">Add Experience</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="footer">
+            <!-- <div class="footer">
                 <p class="copyright">
                     &copy; 2022 <a href="">Tochard</a>. All Right Reserved
                 </p>
-            </div>
+            </div> -->
         </div>
 
 

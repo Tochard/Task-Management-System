@@ -32,12 +32,11 @@ if (!isset($_SESSION['unique_id'])) {
 <body>
 
     <?php
-    // include_once "../scripts/php/dbconn.php";
-    // $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-    // if (mysqli_num_rows($sql) > 0) {
-    //     $row = mysqli_fetch_assoc($sql);
-    // }
-    // 
+    include_once "../scripts/php/dbconn.php";
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+    if (mysqli_num_rows($sql) > 0) {
+        $row = mysqli_fetch_assoc($sql);
+    }
     ?>
     <div class="header">
         <div class="top-nav">
@@ -63,7 +62,7 @@ if (!isset($_SESSION['unique_id'])) {
     <div class="content">
         <div class="mobile-nav" id="mobile-navs">
             <ul>
-                <a href="dashboard.php" class="nav-link">
+                <a href="dashboard.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-pen-to-square"></i>Today</li>
                 </a>
                 <a href="addTask.php" class="nav-link">
@@ -75,13 +74,13 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="addNote.php" class="nav-link">
+                <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="myNote.php" class="nav-link">
+                <a href="addNote.php" class="nav-link  active">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link active">
+                <a href="monthPlan.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="history.php" class="nav-link">
@@ -117,10 +116,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="myNote.php" class="nav-link">
+                <a href="#" class="nav-link  active">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link active">
+                <a href="monthPlan.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
                 <a href="history.php" class="nav-link">
@@ -141,84 +140,52 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="main-content" id="main-content">
 
-            <div class="form-sect card">
-                <h3 class="about-title">Edit Task</h3>
 
 
+            <!-- <div class="card">
+                <div class="nt-heading">
+                    <h2>CONTENT DATES</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="card-grid ">
+                    <div class="card">
+                        <h2 class="nt-head">Lorem, ipsum dolor.</h2>
+                        <ul>
+                            <a href="#">
+                                <li>26/05/2002</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
 
-                <?php
+            <div class="card">
+                <div class="nt-heading">
+                    <h2>Experience Notebook</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="card-grid ">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT * FROM experience WHERE unique_id = {$_SESSION['unique_id']} ORDER BY id DESC");
+                    if (mysqli_num_rows($query) > 0) {
+                        while ($row2 = mysqli_fetch_assoc($query)) {
 
-
-
-                if (isset($_POST['editPlan'])) {
-
-                    $plan_id = mysqli_real_escape_string($conn, $_POST['id']);
-
-                    $query = "SELECT * FROM plans WHERE plan_id = $plan_id ";
-                    $query_run = mysqli_query($conn, $query);
-                    $result = mysqli_fetch_assoc($query_run);
-                ?>
-
-
-
-                    <form action="../scripts/php/editPlan.php" method="POST">
-                        <div class="st-inp">
-
-
-                            <div class="st-a">
-                                <label for="Plan" class="label">Plan</label>
-                                <input type="text" name="plan" class="inp pln" value="<?php echo $result['plan'] ?>">
-                            </div>
-                            <div class=" st-a">
-                                <label for="date" class="label">Date</label>
-                                <input type="date" name="date" class="inp dt" value="<?php echo $result['date'] ?>">
-                            </div>
-                        </div>
-
-                        <label for="status" class="label">Status</label>
-                        <?php
-                        $status = $result['status'];
-
-                        if ($status == "Pending") {
-                        ?>
-                            <div class="radio-select">
-                                <div class="radio-btn">
-                                    <input type="radio" id="Pending" name="status" value="Pending" checked>
-                                    <label for="Pending">Pending</label>
-                                </div>
-
-                                <div class="radio-btn">
-                                    <input type="radio" id="Done" name="status" value="Done">
-                                    <label for="Done">Done</label>
-                                </div>
-                            </div>
-                        <?php
-                        } elseif ($status == "Done") {
-                        ?>
-                            <div class="radio-select">
-                                <div class="radio-btn">
-                                    <input type="radio" id="Pending" name="status" value="Pending">
-                                    <label for="Pending">Pending</label>
-                                </div>
-
-                                <div class="radio-btn">
-                                    <input type="radio" id="Done" name="status" value="Done" checked>
-                                    <label for="Done">Done</label>
-                                </div>
+                    ?>
+                            <div class="card">
+                                <h2 class="nt-date"><?php echo $row2['date'] ?></h2>
+                                <h4 class="nt-time"><?php echo $row2['time'] ?></h4>
+                                <p class="nt-note"><?php echo $row2['note'] ?></p>
                             </div>
 
-                        <?php
+                    <?php
                         }
+                    } else {
+                        echo "<h3 style = 'color: #eb3838; margin: 20px;'>Notebook empty</h3>";
+                    }
+                    ?>
+                </div>
 
-                        ?>
-                        <input type="hidden" name="id" value=" <?php echo $result['plan_id'] ?>">
-                        <button type=" submit" name="update" class="btn btn-primary btn-form" id="update">Update</button>
-                    </form>
 
-
-                <?php
-                }
-                ?>
             </div>
 
 
@@ -227,8 +194,7 @@ if (!isset($_SESSION['unique_id'])) {
 
     </div>
 
-    <script src="../scripts/js/editTask.js" type="text/javascript"></script>
-    <script src="../scripts/js/addTask.js" type="text/javascript"></script>
+    <script src="../scripts/js/addNote.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 

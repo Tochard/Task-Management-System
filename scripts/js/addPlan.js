@@ -10,7 +10,6 @@ form.onsubmit = (e)=>{
     e.preventDefault(); 
 }
 addToPlan.onclick = () =>{
-    console.log('add');
     let Xhr = new XMLHttpRequest();
     Xhr.open("POST", "../scripts/php/addPlan.php", true);
     Xhr.onload = ()=>{

@@ -39,6 +39,6 @@ CREATE TABLE experience (
     month varchar(255) NOT NULL,
     date varchar(255) NOT NULL,
     time varchar(500) NOT NULL,
-    note varchar(500) NOT NULL,
+    note varchar(1500) NOT NULL,
     note_id varchar(255) NOT NULL
 )

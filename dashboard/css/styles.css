@@ -219,6 +219,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 3px 7px #5c50dc80;
     width: 100%;
+    color: var(--majorelle-blue);
 }
 
 .box {
@@ -227,6 +228,12 @@ body {
     box-shadow: 0 3px 7px #5c50dc80;
     border-radius: 10px;
     margin-top: 30px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
 }
 
 
@@ -440,7 +447,17 @@ act-btn
     margin-top: 30px;
 }
 
-
+.errortxt {
+    color: var(--majorelle-blue);
+    background: #5c50dc80;
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid var(--majorelle-blue);
+    display: none;
+}
 .form-sect {
     padding: var(--section-padding);
 }
@@ -573,6 +590,26 @@ label {
 
 
 
+.nt-heading{
+    padding: 20px 0;
+}
+.nt-head{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.nt-date{
+    text-align: center;
+    text-decoration: underline;
+}
+.nt-time{
+    text-align: right;
+    text-decoration: underline;
+    padding-right: 15%;
+    margin: 10px 0;
+}
+.nt-note{
+    padding: 0 5%;
+}
 
 
 

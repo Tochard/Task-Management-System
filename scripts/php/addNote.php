@@ -8,25 +8,18 @@ if (isset($_SESSION['unique_id'])) {
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
     $date = mysqli_real_escape_string($conn, $_POST['date']);
     $time = mysqli_real_escape_string($conn, $_POST['time']);
+    $note = mysqli_real_escape_string($conn, $_POST['note']);
     $month = date('F');
-    $status = "Pending";
     $note_id = rand(time(), 10000000);
     // $rating = 0;
 
-    if (!empty($task)) {
-        $sql = mysqli_query($conn, "INSERT INTO task (date, day, month, year, unique_id, fullname, task, time, task_id, status)
-                            VALUES ('{$date}', '{$day}', '{$month}', '{$year}', '{$user_id}', '{$fname}', '{$task}', '{$time}', '{$task_id}', '{$status}') ") or die();
+    if (!empty($note) && !empty($date) && !empty($time)) {
+        $sql = mysqli_query($conn, "INSERT INTO experience ( fullname, unique_id, date, time, month, note, note_id )
+                            VALUES ( '{$fname}', '{$user_id}', '{$date}', '{$time}', '{$month}', '{$note}', '{$note_id}') ") or die();
+        echo "Experience Added to NoteBook";
+    } else{
+        echo "Input Cannot Be Blank";
     }
 }
 
 
-CREATE TABLE experience (
-	id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    fullname varchar(255) NOT NULL,
-    unique_id int(200) NOT NULL,
-    month varchar(255) NOT NULL,
-    date varchar(255) NOT NULL,
-    time varchar(500) NOT NULL,
-    note varchar(500) NOT NULL,
-    note_id varchar(255) NOT NULL
-)

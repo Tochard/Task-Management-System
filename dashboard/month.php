@@ -74,10 +74,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
                 <a href="monthPlan.php" class="nav-link active">
@@ -113,10 +113,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
                 <a href="monthPlan.php" class="nav-link active">
