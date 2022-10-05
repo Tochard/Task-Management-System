@@ -74,10 +74,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-calendar-days"></i>Calendar</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="addNote.php" class="nav-link  active">
+                <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
                 <a href="monthPlan.php" class="nav-link">
@@ -89,7 +89,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bell"></i>Notification</li>
                 </a>
-                <a href="profile.php" class="nav-link">
+                <a href="#" class="nav-link  active">
                     <li class="nav-items"><i class="fa-solid fa-user"></i>Profile</li>
                 </a>
                 <form action="../scripts/php/logout.php" method="POST">
@@ -116,7 +116,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="addNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-pencil"></i>Add Experience</li>
                 </a>
-                <a href="#" class="nav-link  active">
+                <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
                 <a href="monthPlan.php" class="nav-link">
@@ -128,7 +128,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bell"></i>Notification</li>
                 </a>
-                <a href="profile.php" class="nav-link">
+                <a href="#" class="nav-link  active">
                     <li class="nav-items"><i class="fa-solid fa-user"></i>Profile</li>
                 </a>
                 <form action="../scripts/php/logout.php" method="POST">
@@ -140,53 +140,45 @@ if (!isset($_SESSION['unique_id'])) {
 
         <div class="main-content" id="main-content">
 
-
-
-            <!-- <div class="card">
-                <div class="nt-heading">
-                    <h2>CONTENT DATES</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+            <div class="card">
+                <div class="greeting">
+                    <h2>My Profile</h2>
                 </div>
-                <div class="card-grid ">
-                    <div class="card">
-                        <h2 class="nt-head">Lorem, ipsum dolor.</h2>
-                        <ul>
-                            <a href="#">
-                                <li>26/05/2002</li>
-                            </a>
-                        </ul>
+                <div class="proSect">
+
+                </div>
+                <div class="pro">
+
+                    <form action="../scripts/php/uploadPro.php" method="post" enctype="multipart/form-data" class="uploadForm" id="uploadForm">
+                        <div class="upload">
+
+                            <img src="uploads/<?php echo $row['proImg'] ?>" alt="">
+
+                            <div class="round">
+                                <input type="hidden" name="id" value="<?php echo $row['unique_id'] ?>">
+                                <input type="hidden" name="name" value="<?php echo $row['fullname'] ?>">
+                                <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+                                <i class="fa fa-camera"></i>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="">
+
+
+                        <div class="pr">
+                            <label for="fname" class="label">Name</label>
+                            <input type="text" name="fname" class="inp" value="<?php echo $row['fullname'] ?>">
+                        </div>
+                        <div class="pr">
+                            <label for="email" class="label">Email</label>
+                            <input type="email" name="email" class="inp" value="<?php echo $row['email'] ?>">
+                        </div>
                     </div>
                 </div>
-            </div> -->
-
-            <div class="card">
-                <div class="nt-heading">
-                    <h2>Experience Notebook</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="card-grid ">
-                    <?php
-                    $query = mysqli_query($conn, "SELECT * FROM experience WHERE unique_id = {$_SESSION['unique_id']} ORDER BY id DESC");
-                    if (mysqli_num_rows($query) > 0) {
-                        while ($row2 = mysqli_fetch_assoc($query)) {
-
-                    ?>
-                            <div class="card">
-                                <h2 class="nt-date"><?php echo $row2['date'] ?></h2>
-                                <h4 class="nt-time"><?php echo $row2['time'] ?></h4>
-                                <p class="nt-note"><?php echo $row2['note'] ?></p>
-                            </div>
-
-                    <?php
-                        }
-                    } else {
-                        echo "<h3 style = 'color: #eb3838; margin: 20px;'>Notebook empty</h3>";
-                    }
-                    ?>
-                </div>
-
-
             </div>
+
 
 
         </div>
@@ -194,7 +186,9 @@ if (!isset($_SESSION['unique_id'])) {
 
     </div>
 
-    <script src="../scripts/js/addNote.js" type="text/javascript"></script>
+
+    <script src=" ../scripts/js/addNote.js" type="text/javascript"></script>
+    <script src="./js/uploadPro.js" type="text/javascript"></script>
     <script src="./js/script.js" type="text/javascript"></script>
 </body>
 

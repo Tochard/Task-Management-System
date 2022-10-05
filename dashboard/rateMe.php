@@ -54,7 +54,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <i class="fa-solid fa-plus"></i>
                 <i class="fa-solid fa-bell"></i>
                 <div class="profile">
-                    <img src="./images/pro.jpg" alt="profile" class="profile-img">
+                    <img src="uploads/<?php echo $row['proImg'] ?>" alt="profile" class="profile-img">
                     <i class="fa-solid fa-caret-down"></i>
                 </div>
             </div>
@@ -91,7 +91,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bell"></i>Notification</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="profile.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-user"></i>Profile</li>
                 </a>
                 <form action="../scripts/php/logout.php" method="POST">
@@ -130,7 +130,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="#" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-bell"></i>Notification</li>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="profile.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-user"></i>Profile</li>
                 </a>
                 <form action="../scripts/php/logout.php" method="POST">
@@ -168,7 +168,7 @@ if (!isset($_SESSION['unique_id'])) {
 
                     <div class="greeting rating">
                         <h2>Hi, <?php echo $row['fullname'] ?></h2>
-                        <h1>Your Today Productivity Rating:</h1>
+                        <h1>Productivity Rating:</h1>
                         <h1 class="rate-per"><?php echo $rating ?>%</h1>
                         <?php
                         if ($rating >= 90) {

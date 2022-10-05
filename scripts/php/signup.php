@@ -6,6 +6,7 @@ $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
 date_default_timezone_set('Africa/lagos');
 $date = date('m/d/Y');
+$proImg = "default.jpg";
 
 
 if (!empty($fname) && !empty($email) && !empty($password)) {
@@ -21,8 +22,8 @@ if (!empty($fname) && !empty($email) && !empty($password)) {
             $randon_id = rand(time(), 10000000); //creating random id for user
 
             //Inserting users data into user table
-            $sql2 = mysqli_query($conn, "INSERT INTO users (unique_id, fullname, email, password, date) 
-                    VALUES ({$randon_id}, '{$fname}', '{$email}', '{$password}', '{$date}' ) ");
+            $sql2 = mysqli_query($conn, "INSERT INTO users (unique_id, fullname, email, password, date, proImg ) 
+                    VALUES ({$randon_id}, '{$fname}', '{$email}', '{$password}', '{$date}', '{$proImg}' ) ");
             if ($sql2) {
                 // if these data inserted
                 //Send Sucess Email to user
