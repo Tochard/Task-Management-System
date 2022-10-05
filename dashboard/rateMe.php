@@ -51,8 +51,8 @@ if (!isset($_SESSION['unique_id'])) {
                 <img src="../assets/images/logo.png" alt="logo" class="logo">
             </div>
             <div class="right-nav">
-                <i class="fa-solid fa-plus"></i>
-                <i class="fa-solid fa-bell"></i>
+                <a href="addTask.php" title="ADD TASK"><i class="fa-solid fa-plus"></i></a>
+                <a href="#" title="NOTIFICATION"><i class="fa-solid fa-bell"></i></a>
                 <div class="profile">
                     <img src="uploads/<?php echo $row['proImg'] ?>" alt="profile" class="profile-img">
                     <i class="fa-solid fa-caret-down"></i>

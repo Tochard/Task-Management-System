@@ -265,6 +265,9 @@ body {
     font-size: var(--fs-3);
     gap: 15px;
 }
+.right-nav a{
+    color: var(--white);
+}
 .left-nav-mobile{
     display: none;
 }
