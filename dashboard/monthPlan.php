@@ -247,6 +247,7 @@ if (!isset($_SESSION['unique_id'])) {
                         </div>
 
                     </div>
+                    <a href="allMonthHist.php"><button class="btn btn-primary btn-form">View all Plans</button></a>
                 </div>
 
             </div>

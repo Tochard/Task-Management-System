@@ -80,10 +80,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link">
+                <a href="monthPlan.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
-                <a href="#" class="nav-link active">
+                <a href="history.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-database"></i>History</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -119,10 +119,10 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="myNote.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-book"></i>My Notebook</li>
                 </a>
-                <a href="monthPlan.php" class="nav-link">
+                <a href="monthPlan.php" class="nav-link active">
                     <li class="nav-items"><i class="fa-solid fa-chart-simple"></i>Monthly Plan</li>
                 </a>
-                <a href="#" class="nav-link active">
+                <a href="history.php" class="nav-link">
                     <li class="nav-items"><i class="fa-solid fa-database"></i>History</li>
                 </a>
                 <a href="#" class="nav-link">
@@ -143,35 +143,42 @@ if (!isset($_SESSION['unique_id'])) {
             <div class="card">
                 <div class="greeting">
                     <p>History</p>
-                    <h2>Month of <?php echo date('F') ?></h2>
+                    <h2>Monthly Plans</h2>
                 </div>
 
                 <div class="table-wrapper">
 
                     <table>
                         <thead>
-                            <th>Days</th>
+                            <th>Year</th>
+                            <th>Month</th>
                             <th>Date</th>
-                            <th>View Tasks</th>
+                            <th>Plan</th>
+                            <th>Status</th>
                         </thead>
                         <tbody class="task-table">
 
                             <?php
                             $month = date('F');
-                            $query = mysqli_query($conn, "SELECT * FROM task WHERE unique_id = {$_SESSION['unique_id']} AND month = '{$month}' GROUP BY date");
+                            $query = mysqli_query($conn, "SELECT * FROM plans WHERE unique_id = {$_SESSION['unique_id']} GROUP BY date");
                             if (mysqli_num_rows($query) > 0) {
                                 while ($row2 = mysqli_fetch_assoc($query)) {
 
                             ?>
 
                                     <tr>
-                                        <td><?php echo $row2['day'] ?></td>
+                                        <td><?php echo $row2['year'] ?></td>
+                                        <td><?php echo $row2['month'] ?></td>
                                         <td><?php echo $row2['date'] ?></td>
+                                        <td><?php echo $row2['plan'] ?></td>
                                         <td>
-                                            <form action="./viewTask.php" method="POST">
-                                                <input type="hidden" name="date" value="<?php echo $row2['date'] ?>">
-                                                <button class="btn btn-primary btn-green" name="view" type="submit"><i class="fa-solid fa-eye"></i></button>
-                                            </form>
+                                            <?php
+                                            if ($row2['status'] == "Pending") {
+                                                echo '<span style="color: #faa70e;">Pending</span>';
+                                            } else {
+                                                echo '<span style="color: #0bb70b;">Done</span>';
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                             <?php
@@ -190,53 +197,7 @@ if (!isset($_SESSION['unique_id'])) {
 
             </div>
 
-            <div class="form box">
-                <div class="form-sect">
-                    <h3 class="about-title">Search History</h3>
 
-                    <form action="./monthHist.php" method="POST">
-                        <div class="st-inp">
-                            <div class="st-a">
-                                <label for="month" class="label">Month</label>
-                                <select name="month" class="inp" style="width:100%;" required>
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                            </div>
-                            <div class="st-a">
-                                <label for="year" class="label">Year</label>
-                                <select name="year" class="inp" style="width:100%;" required>
-                                    <option value="2020">2017</option>
-                                    <option value="2020">2018</option>
-                                    <option value="2020">2019</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022" selected>2022</option>
-                                    <option value="2023">2023</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" name="check" class="btn btn-primary btn-form">Check History</button>
-                    </form>
-                </div>
-            </div>
-
-
-            <!-- <div class="footer">
-                <p class="copyright">
-                    &copy; 2022 <a href="">Tochard</a>. All Right Reserved
-                </p>
-            </div> -->
         </div>
 
 
